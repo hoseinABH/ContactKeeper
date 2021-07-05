@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Text, View} from 'react-native';
+import {LOGIN, REGISTER} from '../constants/routeNames';
 
 const Login = () => {
   return (
@@ -21,8 +22,8 @@ const AuthNavigator = () => {
   const AuthStack = createStackNavigator();
   return (
     <AuthStack.Navigator>
-      <AuthStack.Screen name="Login" component={Login} />
-      <AuthStack.Screen name="Register" component={SignUp} />
+      <AuthStack.Screen name={LOGIN} component={Login} />
+      <AuthStack.Screen name={REGISTER} component={SignUp} />
     </AuthStack.Navigator>
   );
 };
