@@ -4,6 +4,8 @@ import styles from './styles';
 import colors from '../../assets/theme/colors';
 
 const Input = ({style, error, iconPosition = 'left', icon, label, ...rest}) => {
+  const [focused, setFocused] = React.useState(false);
+
   const getFlexDirection = () => {
     if (icon && iconPosition) {
       if (iconPosition === 'left') {
@@ -18,7 +20,7 @@ const Input = ({style, error, iconPosition = 'left', icon, label, ...rest}) => {
     if (error) {
       return colors.danger;
     } else {
-      return colors.grey;
+      return focused ? colors.primary : colors.grey;
     }
   };
   return (
@@ -31,8 +33,14 @@ const Input = ({style, error, iconPosition = 'left', icon, label, ...rest}) => {
           {flexDirection: getFlexDirection()},
         ]}>
         <View style={styles.icon}>{icon && icon}</View>
-        <TextInput {...rest} style={[styles.input, style]} />
+        <TextInput
+          {...rest}
+          style={[styles.input, style]}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+        />
       </View>
+      {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
 };

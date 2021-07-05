@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../assets/theme/colors';
 export default StyleSheet.create({
   wrapper: {
     height: 42,
@@ -7,11 +8,17 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 5,
+    marginTop: 5,
   },
   input: {
     flex: 1,
   },
   inputContainer: {
     paddingVertical: 12,
+  },
+  error: {
+    color: colors.danger,
+    paddingTop: 4,
+    fontSize: 12,
   },
 });
