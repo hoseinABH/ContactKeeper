@@ -15,6 +15,7 @@ const Login = () => {
         onChangeText={onChangeText}
         value={text}
         icon={<Text>❤</Text>}
+        error="this field is required"
       />
       <Input
         label="password"
