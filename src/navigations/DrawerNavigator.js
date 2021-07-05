@@ -1,6 +1,8 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeNavigator from './HomeNavigator';
+
+// constants
 import {HOME_NAVIGATOR} from '../constants/routeNames';
 
 const DrawerNavigator = () => {

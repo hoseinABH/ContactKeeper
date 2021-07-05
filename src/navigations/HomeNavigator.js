@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Text, View} from 'react-native';
+
+// constants
 import {
   CONTACT_DETAIL,
   CONTACT_LIST,
@@ -8,34 +9,11 @@ import {
   SETTINGS,
 } from '../constants/routeNames';
 
-const Contacts = () => {
-  return (
-    <View>
-      <Text>Hello from Contacts Screen</Text>
-    </View>
-  );
-};
-const ContactDetails = () => {
-  return (
-    <View>
-      <Text>Hello from ContactDetails Screen</Text>
-    </View>
-  );
-};
-const CreateContact = () => {
-  return (
-    <View>
-      <Text>Hello from CreateContact Screen</Text>
-    </View>
-  );
-};
-const Settings = () => {
-  return (
-    <View>
-      <Text>Hello from Settings Screen</Text>
-    </View>
-  );
-};
+// screens
+import Contacts from '../screens/Contacts';
+import ContactDetails from '../screens/ContactDetails';
+import CreateContact from '../screens/CreateContact';
+import Settings from '../screens/Settings';
 
 const HomeNavigator = () => {
   const HomeStack = createStackNavigator();
