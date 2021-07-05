@@ -1,11 +1,13 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import AuthNavigator from './AuthNavigator';
+import DrawerNavigator from './DrawerNavigator';
 
 const AppNavContainer = () => {
+  const isAuth = false;
   return (
     <NavigationContainer>
-      <AuthNavigator />
+      {isAuth ? <DrawerNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };
