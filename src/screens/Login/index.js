@@ -2,6 +2,7 @@ import React from 'react';
 
 // components
 import {Text} from 'react-native';
+import Button from '../../components/Button';
 import Container from '../../components/Container';
 import Input from '../../components/Input';
 
@@ -15,7 +16,6 @@ const Login = () => {
         onChangeText={onChangeText}
         value={text}
         icon={<Text>❤</Text>}
-        error="this field is required"
       />
       <Input
         label="Password"
@@ -24,6 +24,7 @@ const Login = () => {
         value={text}
         icon={<Text>❤</Text>}
       />
+      <Button title="Submit" color="secondary" />
     </Container>
   );
 };
