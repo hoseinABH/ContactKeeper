@@ -12,6 +12,7 @@ export default StyleSheet.create({
   },
   input: {
     flex: 1,
+    width: '100%',
   },
   inputContainer: {
     paddingVertical: 12,
