@@ -15,10 +15,24 @@ const Register = () => {
   const [errors, setErrors] = React.useState({});
 
   const changeTextHandler = ({name, value}) => {
-    if (value !== '') {
-      setErrors(prev => ({...prev, [name]: null}));
-    }
     setForm({...form, [name]: value});
+
+    if (value !== '') {
+      if (name === 'password') {
+        if (value.length < 6) {
+          setErrors(prev => ({
+            ...prev,
+            [name]: 'This field needs minimum 6 characters',
+          }));
+        } else {
+          setErrors(prev => ({...prev, [name]: null}));
+        }
+      } else {
+        setErrors(prev => ({...prev, [name]: null}));
+      }
+    } else {
+      setErrors(prev => ({...prev, [name]: 'This field is required'}));
+    }
   };
 
   const submitFormHandler = () => {
