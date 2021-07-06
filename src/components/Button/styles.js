@@ -8,5 +8,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 5,
     flexDirection: 'row',
+    marginVertical: 15,
   },
 });
