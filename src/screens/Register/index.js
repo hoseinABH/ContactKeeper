@@ -10,15 +10,18 @@ import Input from '../../components/Input';
 
 // theme
 import colors from '../../assets/theme/colors';
-
-// env
-import envs from '../../config/env';
+import axios from '../../helpers/axios';
 
 const Register = () => {
   const {navigate} = useNavigation();
+
   const [form, setForm] = React.useState({});
   const [errors, setErrors] = React.useState({});
-  console.log(envs.DEV_BACKEND_URL);
+
+  React.useEffect(() => {
+    axios.post('/auth');
+  }, []);
+
   const changeTextHandler = ({name, value}) => {
     setForm({...form, [name]: value});
 
