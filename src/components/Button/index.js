@@ -24,7 +24,7 @@ const Button = ({disabled, loading, onPress, title, color}) => {
         {backgroundColor: disabled ? colors.grey : getBgColor()},
       ]}>
       <View style={[styles.loaderWrapper]}>
-        {loading && <ActivityIndicator color={colors.grey} />}
+        {loading && <ActivityIndicator color={colors.primary} />}
       </View>
       {title && (
         <Text

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {LOGIN} from '../../constants/routeNames';
-
+import {GlobalContext} from '../../context/Provider';
 // components
 import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import Button from '../../components/Button';
@@ -10,21 +10,21 @@ import Input from '../../components/Input';
 
 // theme
 import colors from '../../assets/theme/colors';
-import axios from '../../helpers/axios';
+
+// actions
+import register from '../../context/actions/auth/register';
 
 const Register = () => {
   const {navigate} = useNavigation();
 
   const [form, setForm] = React.useState({});
   const [errors, setErrors] = React.useState({});
-
-  React.useEffect(() => {
-    axios.post('/auth');
-  }, []);
-
+  const {
+    authDispatch,
+    authState: {error, loading, data},
+  } = useContext(GlobalContext);
   const changeTextHandler = ({name, value}) => {
     setForm({...form, [name]: value});
-
     if (value !== '') {
       if (name === 'password') {
         if (value.length < 6) {
@@ -44,7 +44,6 @@ const Register = () => {
   };
 
   const submitFormHandler = () => {
-    console.log(form);
     if (!form.userName) {
       setErrors(prev => ({...prev, userName: 'Please add a username'}));
     }
@@ -60,7 +59,19 @@ const Register = () => {
     if (!form.password) {
       setErrors(prev => ({...prev, password: 'Please add a password'}));
     }
+
+    if (
+      Object.values(form).length === 5 &&
+      Object.values(form).every(item => item.trim().length > 0) &&
+      Object.values(errors).every(item => !item)
+    ) {
+      register(form)(authDispatch)(response => {
+        navigate(LOGIN, {data: response});
+      });
+    }
   };
+
+  console.log('line73: ', error, data);
   return (
     <Container>
       <Image
@@ -101,7 +112,13 @@ const Register = () => {
         secureTextEntryd
         placeholder="Enter Your Password"
       />
-      <Button title="Submit" color="primary" onPress={submitFormHandler} />
+      <Button
+        title="Submit"
+        color="primary"
+        onPress={submitFormHandler}
+        loading={loading}
+        disabled={loading}
+      />
 
       <View style={styles.registerSection}>
         <Text style={styles.infoText}>Already have an account?</Text>
